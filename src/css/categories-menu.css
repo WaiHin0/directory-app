@@ -1,0 +1,10 @@
+a {
+    color: #00BCD4;
+}
+a:hover {
+    text-decoration: none;
+    color: aqua;
+}
+.card {
+    padding: 20px;
+}
