@@ -16,6 +16,7 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" id="owl.carousel.css-css" href="http://shtheme.net/demosd/accommodo/wp-content/themes/accommodo/assets/css/owl.carousel.css?ver=5.0.2" type="text/css" media="all">
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -43,5 +44,65 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://shtheme.net/demosd/accommodo/wp-content/themes/accommodo/assets/js/owl.carousel.js?ver=5.0.2"></script>
+
+    <script>
+      //  Owl Carousel -------------------------------------------------------------------------------------------------------
+
+    if( $(".gallery-carousel").length ){
+        $(".gallery-carousel").owlCarousel({
+            margin:10,
+            items: 4,
+            navText: [],
+            nav: true,
+            dots: false,
+                responsive : {
+                    0 : {
+                        items: 1
+                    },
+                    480 : {
+                        items: 3
+                    },
+                    768 : {
+                        items: 3
+                    },
+                    1200 : {
+                        items: 4
+                    }
+                }
+        });
+    }
+
+//  Owl Carousel in item view ------------------------------------------------------------------------------------------
+
+    $(".item.big .image, .item.list .image")
+        .mouseenter(function() {
+            if( $(this).find(".owl-carousel").length == 0 ){
+                //$(this).find( $("img[data-image]") ).each(function() {
+                    //$(this).attr( "src", $(this).attr("data-src") );
+                //});
+                $(this).find(".gallery").owlCarousel({
+                    autoplaySpeed: 1000,
+                    autoplay: false,
+                    mouseDrag: false,
+                    loop: true,
+                    items: 1,
+                    lazyLoad:true,
+                    nav: true,
+                    navContainer: $(this).find(".owl-navigation"),
+                    navText: []
+                });
+                $(this).addClass("show-nav");
+            }
+            else {
+                $(this).addClass("show-nav");
+            }
+        })
+        .mouseleave(function() {
+            $(this).removeClass("show-nav");
+            $(this).find(".gallery").trigger("to.owl.carousel", 0);
+        });
+
+    </script>
   </body>
 </html>
